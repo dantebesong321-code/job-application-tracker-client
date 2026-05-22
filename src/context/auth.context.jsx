@@ -20,9 +20,7 @@ function AuthWrapper(props) {
     }
 
     try {
-      const response = await service.get(
-        "http://localhost:5005/api/auth/signup",
-      );
+      const response = await service.get("/auth/signup");
       console.log(response);
       // asume the token was valid
       setIsLoggedIn(true);

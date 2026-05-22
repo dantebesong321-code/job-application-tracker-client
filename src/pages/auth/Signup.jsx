@@ -33,7 +33,7 @@ function Signup() {
       if (error.response.status === 400) {
         setErrorMessage(error.response.data.errorMessage);
       } else {
-        // navigate("/error")
+        setErrorMessage("Oops! Something went wrong.");
       }
     }
   };

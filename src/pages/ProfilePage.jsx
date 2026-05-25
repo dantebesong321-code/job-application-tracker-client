@@ -1,7 +1,7 @@
 import service from "../services/index.services";
 import { useEffect, useState } from "react";
 
-function PrivatePageExample() {
+function ProfilePage() {
   const [dataOnlyForLoggedUsers, setData] = useState(null);
 
   useEffect(() => {
@@ -11,7 +11,7 @@ function PrivatePageExample() {
   const getData = async () => {
     try {
       // call a private route here...
-      const response = await service.get("/job");
+      const response = await service.get("/:userProfileId");
       console.log(response.data);
       setData(response.data);
     } catch (error) {
@@ -45,4 +45,4 @@ function PrivatePageExample() {
   );
 }
 
-export default PrivatePageExample;
+export default ProfilePage;

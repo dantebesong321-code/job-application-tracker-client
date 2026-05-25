@@ -20,12 +20,12 @@ function AuthWrapper(props) {
     }
 
     try {
-      const response = await service.get("/auth/signup");
+      const response = await service.get("auth/verify");
       console.log(response);
       // asume the token was valid
       setIsLoggedIn(true);
       setLoggedUserId(response.data.payload._id);
-      setLoggedUserRole(response.data.payload.role);
+      // setLoggedUserRole(response.data.payload.role);
 
       setIsAuthenticating(false);
     } catch (error) {
@@ -33,7 +33,7 @@ function AuthWrapper(props) {
       // asume the token was not valid
       setIsLoggedIn(false);
       setLoggedUserId(null);
-      setLoggedUserRole(null);
+      // setLoggedUserRole(null);
 
       setIsAuthenticating(false);
     }

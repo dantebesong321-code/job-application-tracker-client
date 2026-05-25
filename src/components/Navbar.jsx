@@ -1,7 +1,7 @@
+import { RxHamburgerMenu } from "react-icons/rx";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
-
 function Navbar() {
   const navigate = useNavigate();
 
@@ -17,29 +17,38 @@ function Navbar() {
     // revert the states to their initial value
     setIsLoggedIn(false);
     setLoggedUserId(null);
-    setLoggedUserRole(null);
+    // setLoggedUserRole(null);
 
     // navigate the user to a public page
     navigate("/login");
   }
 
   return (
-    <nav>
-      <Link to="/">Home</Link>
+    <nav className="bg-blue-600 text-white p-4 flex justify-between">
+      <div>
+        <Link to="/">Home</Link>
+      </div>
+      <div>
+        <div className="md:block hidden">
+          {!isLoggedIn && (
+            <>
+              <Link to="/signup">Signup</Link>
+              <Link to="/login">Login</Link>
+            </>
+          )}
 
-      {!isLoggedIn && (
-        <>
-          <Link to="/signup">Signup</Link>
-          <Link to="/login">Login</Link>
-        </>
-      )}
-
-      {isLoggedIn && (
-        <>
-          <Link to="/private-page-example">Private Page Example</Link>
-          <Link onClick={handleLogout}>Logout</Link>
-        </>
-      )}
+          {isLoggedIn && (
+            <>
+              {" "}
+              <div className="flex gap-1">
+                <Link to="/jobList">JobListPage</Link>
+                <Link onClick={handleLogout}>Logout</Link>
+              </div>
+            </>
+          )}
+        </div>
+        <div className="lg:block hidden">{<RxHamburgerMenu />}</div>
+      </div>
     </nav>
   );
 }

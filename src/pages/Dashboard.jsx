@@ -1,7 +1,9 @@
 import service from "../services/index.services";
 import { useEffect, useState } from "react";
+import { Outlet } from "react-router-dom";
+import Table from "../components/Table";
 
-function PrivatePageExample() {
+function Dashboard() {
   const [dataOnlyForLoggedUsers, setData] = useState(null);
 
   useEffect(() => {
@@ -21,28 +23,20 @@ function PrivatePageExample() {
 
   // loading handler here
   if (!dataOnlyForLoggedUsers) {
-    return (
-      <span className="bg-indigo-500">
-        {" "}
-        <svg className="mr-3 size-5 animate-spin ..." viewBox="0 0 24 24">
-          {" "}
-          <h3>loading...</h3>
-        </svg>
-      </span>
-    );
+    return <h3>loading...</h3>;
   }
 
   return (
-    <div>
-      <h3>Private Page Example</h3>
-      <p>
-        Should only be visible for logged in users that already validated their
-        credentials (login) and have a valid token
-      </p>
-
-      {dataOnlyForLoggedUsers.username}
+    <div className="bg-gray-50 min-h-svh">
+      <div>
+        <h3>Welcome </h3>
+        <div className="page-area">
+          <Outlet />
+        </div>
+        {dataOnlyForLoggedUsers.username}
+      </div>
     </div>
   );
 }
 
-export default PrivatePageExample;
+export default Dashboard;

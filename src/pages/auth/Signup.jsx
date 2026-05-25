@@ -1,6 +1,8 @@
 import service from "../../services/index.services";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import image from "../../assets/signup-img.jpg";
 
 function Signup() {
   const navigate = useNavigate();
@@ -39,47 +41,81 @@ function Signup() {
   };
 
   return (
-    <div className="flex shadow-2xl items-center justify-center ">
-      <h1>Signup Form</h1>
+    <section className="flex min-h-screen items-center justify-center  bg-blue-50">
+      <div className="flex rounded-3xl shadow-2xl">
+        <div
+          className="flex flex-col items-center justify-center h-120 w-100 bg-gray-50 rounded-2xl text-left gap-2
+      
+      lg:rounded-tr-none lg:rounded-br-none"
+        >
+          <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">
+            Signup
+          </h2>
+          <p>Create your account in just a few steps!</p> <br />
+          <form onSubmit={handleSignup}>
+            <label className="font-medium text-gray-600 mt-2">Email:</label>
+            <input
+              className="w-full px-2 py-1 border border-stone-400 focus:outline-none focus:bg-gray-100 focus:ring-1 focus:ring-blue-500 rounded-md"
+              type="text"
+              name="email"
+              placeholder="email"
+              value={email}
+              onChange={handleEmailChange}
+            />
 
-      <div className="flex shadow-2xl items-center justify-center ">
-        <form onSubmit={handleSignup}>
-          <label>Email:</label>
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleEmailChange}
-          />
+            <br />
 
-          <br />
+            <label className="block font-medium text-gray-600 mt-2">
+              Username:
+            </label>
+            <input
+              className="w-full px-2 py-1 border border-stone-400 focus:outline-none focus:bg-gray-100 focus:ring-1 focus:ring-blue-500 rounded-md"
+              type="text"
+              name="username"
+              placeholder="username"
+              value={username}
+              onChange={handleUsernameChange}
+            />
 
-          <label>Username:</label>
-          <input
-            type="text"
-            name="username"
-            value={username}
-            onChange={handleUsernameChange}
-          />
+            <br />
 
-          <br />
+            <label className="block font-medium text-gray-600 mt-2">
+              Password:
+            </label>
+            <input
+              className="w-full px-2 py-1 border border-stone-400 focus:outline-none mb-8 focus:bg-gray-100 focus:ring-1 focus:ring-blue-500 rounded-md"
+              type="password"
+              name="password"
+              placeholder="password"
+              value={password}
+              onChange={handlePasswordChange}
+            />
 
-          <label>Password:</label>
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handlePasswordChange}
-          />
+            <br />
 
-          <br />
+            <button
+              className="bg-violet-500 hover:bg-violet-600 w-full  text-white p-2 rounded-md font-semibold transition mb-3"
+              type="submit"
+            >
+              Signup
+            </button>
+            <p className="text-xs text-center">
+              Already have an account?{" "}
+              <Link to={"/login"}>
+                <span className="text-blue-600">Login</span>
+              </Link>
+            </p>
 
-          <button type="submit">Signup</button>
-
-          {errorMessage && <p>{errorMessage}</p>}
-        </form>
+            {errorMessage && <p>{errorMessage}</p>}
+          </form>
+        </div>
+        <img
+          src={image}
+          alt=""
+          className="w-120 object-cover lg:rounded-tr-2xl  lg:rounded-br-2xl lg:block hidden"
+        />
       </div>
-    </div>
+    </section>
   );
 }
 

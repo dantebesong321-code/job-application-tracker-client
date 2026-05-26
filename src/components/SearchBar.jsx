@@ -1,4 +1,53 @@
+import service from "../services/index.services";
+import { useEffect, useState } from "react";
+
 function SearchBar() {
-  return <div>SearchBar</div>;
+  const [allJobs, setAllJobs] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    try {
+      const response = await service.get("/job");
+
+      console.log(response.data);
+
+      setAllJobs(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const filteredJobs = allJobs.filter((job) => {
+    const search = searchTerm.toLowerCase();
+
+    return (
+      job.company.toLowerCase().includes(search) ||
+      job.jobRole.toLowerCase().includes(search)
+    );
+  });
+
+  if (!allJobs.length) {
+    return <h3>loading...</h3>;
+  }
+
+  return (
+    <div className="overflow-auto">
+      {/* SEARCH BAR */}
+      <div className="mb-4">
+        <input
+          type="text"
+          placeholder="Search by company or role..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="border p-2 rounded-lg w-full"
+        />
+      </div>
+    </div>
+  );
 }
+
 export default SearchBar;

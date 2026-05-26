@@ -1,7 +1,7 @@
 import service from "../services/index.services";
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
-import Table from "../components/Table";
+import Table from "../components/JobTable";
 
 function Dashboard() {
   const [dataOnlyForLoggedUsers, setData] = useState(null);

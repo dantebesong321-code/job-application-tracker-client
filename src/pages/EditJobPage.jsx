@@ -163,8 +163,6 @@ function EditJobPage() {
 
               <option value="interviewing">Interviewing</option>
 
-              <option value="ghosted">Ghosted</option>
-
               <option value="rejected">Rejected</option>
             </select>{" "}
           </div>{" "}

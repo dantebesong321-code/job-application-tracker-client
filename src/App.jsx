@@ -10,14 +10,21 @@ import JobList from "./pages/JobList";
 import Dashboard from "./pages/Dashboard";
 import ProfilePage from "./pages/ProfilePage";
 import PrivatePageExample from "./pages/PrivatePageExample";
+import AddJobPage from "./pages/AddJobPage";
+import EditJobPage from "./pages/EditJobPage";
+import DocFooter from "./components/DocFooter";
+import NotFoundPage from "./pages/NotFoundPage";
+import JobTable from "./components/JobTable";
 
 // components
 import Navbar from "./components/Navbar";
 import PrivateOnly from "./components/PrivateOnly";
+import MyNavbar from "./components/MyNavbar";
 
 function App() {
   return (
-    <div className="min-h-svh">
+    <>
+      <MyNavbar />
       <Navbar />
 
       <br />
@@ -27,29 +34,26 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profilePage" element={<ProfilePage />} />
-        <Route path="/jobList" element={<JobList />} />
-
-        <Route
-          path="/dashboard"
-          element={
-            <PrivateOnly>
-              <Dashboard />
-            </PrivateOnly>
-          }
-        />
-        <Route
-          path="/private-page-example"
-          element={
-            <PrivateOnly>
-              {" "}
-              <PrivatePageExample />{" "}
-            </PrivateOnly>
-          }
-        />
-        {/* error FE routes here... */}
+        //* all pages included in privateOnly
+        <Route path="/dashboard" element={<Dashboard />}>
+          <Route index element={<JobList />} />
+          <Route path="job/jobTable" element={<JobTable />} />
+          <Route path="job/jobList" element={<JobList />} />
+          <Route path="job" element={<AddJobPage />} />
+          <Route path="job/:jobId" element={<EditJobPage />} />
+        </Route>
       </Routes>
-    </div>
+
+      <DocFooter />
+    </>
   );
+  <PrivateOnly>
+    {" "}
+    <PrivatePageExample />{" "}
+  </PrivateOnly>;
+  {
+    /* error FE routes here... */
+  }
 }
 
 export default App;

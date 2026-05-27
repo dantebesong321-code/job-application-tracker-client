@@ -2,6 +2,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
+
 function Navbar() {
   const navigate = useNavigate();
 
@@ -11,22 +12,18 @@ function Navbar() {
   function handleLogout(e) {
     e.preventDefault();
 
-    // destroying the token
     localStorage.removeItem("authToken");
 
-    // revert the states to their initial value
     setIsLoggedIn(false);
     setLoggedUserId(null);
-    // setLoggedUserRole(null);
 
-    // navigate the user to a public page
     navigate("/login");
   }
 
   return (
     <nav className="bg-blue-600 text-white p-4 flex justify-between">
       <div>
-        <Link to="/">Home</Link>
+        <Link to="/">Jobble</Link>
       </div>
       <div>
         <div className="md:block hidden">
@@ -47,7 +44,7 @@ function Navbar() {
             </>
           )}
         </div>
-        <div className="lg:block hidden">{<RxHamburgerMenu />}</div>
+        <div className="lg:block hidden"></div>
       </div>
     </nav>
   );

@@ -1,15 +1,19 @@
+import { BiEditAlt } from "react-icons/bi";
 import service from "../services/index.services";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { Button } from "flowbite-react";
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeadCell,
-  TableRow,
+  Dropdown,
+  DropdownDivider,
+  DropdownHeader,
+  DropdownItem,
 } from "flowbite-react";
+import { Banner, BannerCollapseButton } from "flowbite-react";
+import { HiX } from "react-icons/hi";
+import SearchBar from "./SearchBar";
 
-function JobTable(props) {
+function JobTable() {
   const [allJobs, setAllJobs] = useState(null);
 
   useEffect(() => {
@@ -28,38 +32,62 @@ function JobTable(props) {
 
   if (!allJobs) {
     return <h3>loading...</h3>;
+    <Spinner />;
   }
 
   return (
     <>
-      <div className="overflow-auto h-svh">
-        <Table className="rounded-b-xl h-1 shadow-2xs border-gray-400">
-          <TableHead>
-            <TableRow>
-              <TableHeadCell>Company</TableHeadCell>
-              <TableHeadCell>Role</TableHeadCell>
-              <TableHeadCell>Location</TableHeadCell>
-              <TableHeadCell>Website</TableHeadCell>
-              <TableHeadCell>status</TableHeadCell>
-              <TableHeadCell></TableHeadCell>
-            </TableRow>
-          </TableHead>
+      <div className="flex flex-wrap gap-3 justify-center">
+        {" "}
+        <SearchBar />
+      </div>
 
-          <TableBody className="divide-y">
-            {allJobs.map((job) => (
-              <TableRow
-                key={job._id}
-                className="bg-white border-gray-200 dark:bg-gray-50 text-neutral-900"
-              >
-                <TableCell>{job.company}</TableCell>
-                <TableCell>{job.jobRole}</TableCell>
-                <TableCell>{job.location}</TableCell>
-                <TableCell>{job.website}</TableCell>
-                <TableCell>{job.status}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+      <br />
+      <h1>Welcome</h1>
+      <Banner>
+        <div className="flex w-[calc(100%-2rem)] flex-col justify-between rounded-lg border border-gray-100 bg-white p-4 shadow-sm md:flex-row lg:max-w-7xl dark:border-gray-600 dark:bg-gray-700">
+          <div className="mb-3 mr-4 flex flex-col items-start md:mb-0 md:flex-row md:items-center">
+            <p className="flex items-center text-sm font-normal text-gray-500 dark:text-gray-400"></p>
+          </div>
+          <div className="flex shrink-0 items-center">
+            <Button href="#">Sign up</Button>
+            <BannerCollapseButton
+              color="gray"
+              className="border-0 bg-transparent text-gray-500 dark:text-gray-400"
+            >
+              <HiX className="h-4 w-4" />
+            </BannerCollapseButton>
+          </div>
+        </div>
+      </Banner>
+      <br />
+      <div>
+        {allJobs.map((job) => (
+          <div
+            key={job._id}
+            className="flex align-middle justify-between flex-wrap m-1 bg-white rounded-md border border-gray-200 p-3 dark:bg-gray-50 hover:shadow-md text-neutral-700"
+          >
+            <div className="flex-col text-left gap-b-0.5">
+              <h5 className="font-bold">{job.jobRole}</h5>
+              <div className="text-sm">
+                <p>{job.company}</p>
+                <div className="flex text-xs mt-3 gap-2.5">
+                  <p>{job.location}</p>
+                  <p>{job.website}</p>
+                </div>
+              </div>
+            </div>
+
+            <div className=" flex-col justify-between text-sm">
+              {" "}
+              <p>{job.status}</p> <br />
+              <Button className="flex h-8 w-4 text-xs" color="light">
+                {" "}
+                <Link to={`/dashboard/job/${job._id}`}> {<BiEditAlt />}</Link>
+              </Button>
+            </div>
+          </div>
+        ))}
       </div>
     </>
   );

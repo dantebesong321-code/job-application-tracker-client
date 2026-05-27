@@ -35,15 +35,14 @@ function SearchBar() {
   }
 
   return (
-    <div className="overflow-auto">
-      {/* SEARCH BAR */}
+    <div className="overflow-auto w-80">
       <div className="mb-4">
         <input
           type="text"
-          placeholder="Search by company or role..."
+          placeholder="Search."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="border p-2 rounded-lg w-full"
+          className="border p-1 rounded-lg w-full"
         />
       </div>
     </div>

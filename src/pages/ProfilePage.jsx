@@ -33,7 +33,7 @@ function ProfilePage() {
   }
 
   return (
-    <div>
+    <div className="min-h-svh">
       <h3>Private Page Example</h3>
       <p>
         Should only be visible for logged in users that already validated their

@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import service from "../services/index.services";
+import { Badge } from "flowbite-react";
 
-function EditJob() {
+function EditJobPage() {
   const navigate = useNavigate();
   const { jobId } = useParams();
 
@@ -23,7 +24,7 @@ function EditJob() {
 
   const getData = async () => {
     try {
-      const response = await service.get(`/job/${jobId}`);
+      const response = await service.patch(`/job/${jobId}`);
 
       console.log(response.data);
 
@@ -55,9 +56,9 @@ function EditJob() {
     };
 
     try {
-      await service.put(`/job/${jobId}`, body);
+      await service.patch(`/job/${jobId}`, body);
 
-      navigate("/job");
+      navigate("/dashboard");
     } catch (error) {
       console.log(error);
     }
@@ -67,155 +68,163 @@ function EditJob() {
     try {
       await service.delete(`/job/${jobId}`);
 
-      navigate("/job");
+      navigate("/dashboard");
     } catch (error) {
       console.log(error);
     }
   };
+  //  lg:rounded-tr-none lg:rounded-br-none
 
   return (
-    <div className="create-job">
-      <h3>Edit Job</h3>
+    <div className=" flex justify-center xl:text-sm m-5 min-h-svh">
+      <div className="flex flex-col items-center justify-center lg:m-h-150 xl:m-h-160 w-100 bg-gray-50 rounded-2xl text-left gap-3">
+        <h2>Edit Job</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="form-element">
+            <label className="font-medium text-gray-600 mt-2">Job Role</label>
 
-      <form onSubmit={handleSubmit}>
-        <div className="form-element">
-          <label>Job Role</label>
-
-          <input
-            type="text"
-            placeholder="Job role"
-            value={jobRole}
-            onChange={(e) => setJobRole(e.target.value)}
-          />
-        </div>
-
-        <div className="form-element">
-          <label>Company</label>
-
-          <input
-            type="text"
-            placeholder="Company"
-            value={company}
-            onChange={(e) => setCompany(e.target.value)}
-          />
-        </div>
-
-        <div className="form-element">
-          <label>Location</label>
-
-          <input
-            type="text"
-            placeholder="Location"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-          />
-        </div>
-
-        <div className="form-element">
-          <label>Salary</label>
-
-          <input
-            type="text"
-            placeholder="Input salary"
-            value={salary}
-            onChange={(e) => setSalary(e.target.value)}
-          />
-        </div>
-
-        <div className="form-element">
-          <label>Website</label>
-
-          <input
-            type="text"
-            placeholder="url"
-            value={website}
-            onChange={(e) => setWebsite(e.target.value)}
-          />
-        </div>
-
-        <div className="form-element">
-          <label>Interview Type</label>
-
-          <select
-            value={interviewType}
-            onChange={(e) => setInterviewType(e.target.value)}
-          >
-            <option value="">Select</option>
-
-            <option value="virtual">Virtual</option>
-
-            <option value="in-person">In Person</option>
-          </select>
-        </div>
-
-        <div className="form-element">
-          <label>Status</label>
-
-          <select value={status} onChange={(e) => setStatus(e.target.value)}>
-            <option value="pending">Pending</option>
-
-            <option value="offered">Offered</option>
-
-            <option value="accepted">Accepted</option>
-
-            <option value="interviewing">Interviewing</option>
-
-            <option value="ghosted">Ghosted</option>
-
-            <option value="rejected">Rejected</option>
-          </select>
-        </div>
-
-        <div className="form-element">
-          <label>
             <input
-              type="checkbox"
-              checked={favorite}
-              onChange={(e) => setFavorite(e.target.checked)}
+              className="w-full px-2 py-1 border border-stone-400 focus:outline-none focus:bg-gray-100 focus:ring-1 focus:ring-blue-500 rounded-md mb-4"
+              type="text"
+              placeholder="Job role"
+              value={jobRole}
+              onChange={(e) => setJobRole(e.target.value)}
             />
-            Favorite
-          </label>
-        </div>
+          </div>
+          <div className="form-element">
+            <label className="font-medium text-gray-600 mt-2">Company</label>
 
-        <br />
+            <input
+              className="w-full px-2 py-1 border border-stone-400 focus:outline-none focus:bg-gray-100 focus:ring-1 focus:ring-blue-500 rounded-md mb-4"
+              type="text"
+              placeholder="Company"
+              value={company}
+              onChange={(e) => setCompany(e.target.value)}
+            />
+          </div>
+          <div className="form-element">
+            <label className="font-medium text-gray-600 mt-2">Location</label>
 
-        <div className="form-btns">
-          <button type="submit">Update</button>
+            <input
+              className="w-full px-2 py-1 border border-stone-400 focus:outline-none focus:bg-gray-100 focus:ring-1 focus:ring-blue-500 rounded-md mb-4"
+              type="text"
+              placeholder="Location"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+            />
+          </div>
+          <div className="form-element">
+            <label className="font-medium text-gray-600 mt-2">Salary</label>
 
-          <button
-            type="button"
-            className="main-delete-btn"
-            onClick={() => setShowConfirm(true)}
-          >
-            Delete
-          </button>
-        </div>
-      </form>
+            <input
+              className="w-full px-2 py-1 border border-stone-400 focus:outline-none focus:bg-gray-100 focus:ring-1 focus:ring-blue-500 rounded-md mb-4"
+              type="text"
+              placeholder="Input salary"
+              value={salary}
+              onChange={(e) => setSalary(e.target.value)}
+            />
+          </div>
+          <div className="form-element">
+            <label className="font-medium text-gray-600 mt-2">Website</label>
 
-      {showConfirm && (
-        <div className="modal-overlay">
-          <div className="modal-box">
-            <h3>Delete Job?</h3>
+            <input
+              className="w-full px-2 py-1 border border-stone-400 focus:outline-none focus:bg-gray-100 focus:ring-1 focus:ring-blue-500 rounded-md mb-4"
+              type="text"
+              placeholder="url"
+              value={website}
+              onChange={(e) => setWebsite(e.target.value)}
+            />
+          </div>{" "}
+          <div className="flex gap-1  form-element">
+            <label>Interview Type</label>
+            <select
+              className="border border-stone-400 mb-4 rounded-xs"
+              value={interviewType}
+              onChange={(e) => setInterviewType(e.target.value)}
+            >
+              <option value="">Select</option>
 
-            <p>This action cannot be undone.</p>
+              <option value="virtual">Virtual</option>
 
-            <div className="modal-actions">
-              <button
-                className="cancel-btn"
-                onClick={() => setShowConfirm(false)}
-              >
-                Cancel
-              </button>
+              <option value="in-person">In Person</option>
+            </select>{" "}
+          </div>{" "}
+          <div className="flex gap-1 mb-1 form-element">
+            <label>Status</label>
+            <select
+              className="border border-stone-400 rounded-xs"
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+            >
+              <Badge color="info">
+                <option value="applied">Applied</option>
+              </Badge>
 
-              <button className="confirm-delete-btn" onClick={confirmDelete}>
-                Delete
-              </button>
+              <option value="offered">Offered</option>
+
+              <option value="accepted">Accepted</option>
+
+              <option value="interviewing">Interviewing</option>
+
+              <option value="ghosted">Ghosted</option>
+
+              <option value="rejected">Rejected</option>
+            </select>{" "}
+          </div>{" "}
+          <div className="form-element flex gap-1">
+            <label className="form-element flex gap-3">
+              <input
+                type="checkbox"
+                checked={favorite}
+                onChange={(e) => setFavorite(e.target.checked)}
+              />
+              Favorite
+            </label>
+          </div>
+          <br />
+          <div className="flex gap-2 ">
+            <button
+              className="bg-neutral-400 hover:bg-zinc-500 w-full  text-white p-2 rounded-md font-semibold transition mb-3"
+              type="submit"
+            >
+              Update
+            </button>
+
+            <button
+              type="button"
+              className="main-delete-btn w-full text-white p-2 rounded-md font-semibold transition mb-3"
+              onClick={() => setShowConfirm(true)}
+            >
+              Delete
+            </button>
+          </div>
+        </form>
+
+        {showConfirm && (
+          <div className="modal-overlay">
+            <div className="modal-box">
+              <h3>Delete Job?</h3>
+
+              <p>This action cannot be undone.</p>
+
+              <div className="modal-actions">
+                <button
+                  className="cancel-btn"
+                  onClick={() => setShowConfirm(false)}
+                >
+                  Cancel
+                </button>
+
+                <button className="confirm-delete-btn" onClick={confirmDelete}>
+                  Delete
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }
 
-export default EditJob;
+export default EditJobPage;

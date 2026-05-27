@@ -1,10 +1,13 @@
 import service from "../services/index.services";
+import AddJobPage from "./AddJobPage";
 import { useEffect, useState } from "react";
+import { Button } from "flowbite-react";
 
 function JobDetail() {
   const { projectId } = useParams(); // destructuring the project id from dynamic params (see App.jsx => :projectId)
 
-  const [project, setProject] = useState(null);
+  const [jobDetail, setjobDetail] = useState(null);
+  const { jobId } = useParams();
 
   useEffect(() => {
     getData();
@@ -12,45 +15,40 @@ function JobDetail() {
 
   const getData = async () => {
     try {
-      // call the API here to receive project details...
-      const response = await axios.get(
-        `${import.meta.env.VITE_SERVER_URL}/projects/${projectId}?_embed=tasks`,
-      );
-      console.log(response.data);
-      setProject(response.data);
+      await service.patch(`/job/${jobId}`, body);
+
+      navigate("/dashboard");
     } catch (error) {
       console.log(error);
-      //todo proper error handling here
     }
   };
 
-  if (!project) return <h3>Loading...</h3>; //todo proper loading animation here
+  if (!jobDetail) return <h3>Loading...</h3>;
 
   return (
-    <div className="ProjectDetailsPage">
+    <div className="min-h-svh bg-white rounded-3xl">
       <div>
-        <h1>{project.title}</h1>
+        <h1>{job.jobRole}</h1>
         <p>{project.description}</p>
       </div>
 
-      {/* ... list of all Tasks for this Project should be rendered here */}
-
-      {/* example of a single TaskCard being rendered */}
-      {/* <TaskCard /> */}
       {project.tasks.map((task) => {
         return <TaskCard key={task.id} task={task} />;
       })}
 
-      {/* ... form for adding a new Task should be rendered here    */}
       <AddTask projectId={project.id} getData={getData} />
 
-      <Link to="/projects">
-        <button>Back to projects</button>
-      </Link>
+      <div className="flex-col justify-between text-sm">
+        <Button className="flex h-8 w-4 text-xs" color="light">
+          {" "}
+          <Link to={`/dashboard`}>Back</Link>
+        </Button>
 
-      <Link to={`/projects/edit/${project.id}`}>
-        <button>Edit Project</button>
-      </Link>
+        <Button className="flex h-8 w-4 text-xs" color="light">
+          {" "}
+          <Link to={`/dashboard/job/${job._id}`}> {<BiEditAlt />}</Link>
+        </Button>
+      </div>
     </div>
   );
 }

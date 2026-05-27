@@ -15,6 +15,7 @@ import SearchBar from "./SearchBar";
 
 function JobTable() {
   const [allJobs, setAllJobs] = useState(null);
+  const [filteredJobs, setFilteredJobs] = useState([]);
 
   useEffect(() => {
     getData();
@@ -25,6 +26,7 @@ function JobTable() {
       const response = await service.get("/job");
       console.log(response.data);
       setAllJobs(response.data);
+      setFilteredJobs(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -39,7 +41,7 @@ function JobTable() {
     <>
       <div className="flex flex-wrap gap-3 justify-center">
         {" "}
-        <SearchBar />
+        <SearchBar allJobs={allJobs} setFilteredJobs={setFilteredJobs} />
       </div>
       <br />
       <div className="flex items-center justify-center bg-stone-200 h-50 rounded-2xl ">
@@ -62,33 +64,35 @@ function JobTable() {
           </Link>
         </div>
       </Banner>
-      <br />
+      <br />{" "}
       <div>
-        {allJobs.map((job) => (
-          <div
-            key={job._id}
-            className="flex align-middle justify-between w-full flex-wrap m-1 bg-white rounded-md border border-gray-200 p-3 dark:bg-gray-50 hover:shadow-md text-neutral-700"
-          >
-            <div className="flex-col text-left gap-b-0.5">
-              <h5 className="font-bold">{job.jobRole}</h5>
-              <div className="text-sm">
-                <p>{job.company}</p>
-                <div className="flex text-xs mt-3 gap-2.5">
-                  <p>{job.location}</p>
-                  <p>{job.website}</p>
+        {filteredJobs.map((job) => (
+          <Link to={`/dashboard/job/jobDetail/${job._id}`}>
+            <div
+              key={job._id}
+              className="flex align-middle justify-between w-full flex-wrap m-1 bg-white rounded-md border border-gray-200 p-3 dark:bg-gray-50 hover:shadow-md text-neutral-700"
+            >
+              {" "}
+              <div className="flex-col text-left gap-b-0.5">
+                <h5 className="font-bold">{job.jobRole}</h5>
+                <div className="text-sm">
+                  <p>{job.company}</p>
+                  <div className="flex text-xs mt-3 gap-2.5">
+                    <p>{job.location}</p>
+                    <p>{job.website}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <div className=" flex-col justify-between text-sm">
-              {" "}
-              <p>{job.status}</p> <br />
-              <Button className="flex h-8 w-4 text-xs" color="light">
+              <div className="flex-col justify-between text-sm">
                 {" "}
-                <Link to={`/dashboard/job/${job._id}`}> {<BiEditAlt />}</Link>
-              </Button>
+                <p>{job.status}</p> <br />
+                <Button className="flex h-8 w-4 text-xs" color="light">
+                  {" "}
+                  <Link to={`/dashboard/job/${job._id}`}> {<BiEditAlt />}</Link>
+                </Button>
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </>

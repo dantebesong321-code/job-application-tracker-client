@@ -76,7 +76,7 @@ function EditJobPage() {
 
   return (
     <div className="flex justify-center xl:text-sm m-5 min-h-svh">
-      <div>
+      <div className="flex flex-col items-center justify-center lg:h-160 xl:h-150 w-100 bg-gray-50 rounded-2xl text-left gap-3">
         <h2>Edit Job</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-element">

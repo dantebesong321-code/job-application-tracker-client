@@ -1,52 +1,30 @@
 import service from "../services/index.services";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-function SearchBar() {
-  const [allJobs, setAllJobs] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
+function SearchBar({ allJobs, setFilteredJobs }) {
+  const [searchQuery, setSearchQuery] = useState("");
 
-  useEffect(() => {
-    getData();
-  }, []);
+  const handleSearch = (value) => {
+    setSearchQuery(value);
 
-  const getData = async () => {
-    try {
-      const response = await service.get("/job");
+    const filteredArr = allJobs.filter((job) =>
+      (job.jobRole || "").toLowerCase().includes(value.toLowerCase()),
+    );
 
-      console.log(response.data);
-
-      setAllJobs(response.data);
-    } catch (error) {
-      console.log(error);
-    }
+    setFilteredJobs(filteredArr);
   };
 
-  const filteredJobs = allJobs.filter((job) => {
-    const search = searchTerm.toLowerCase();
-
-    return (
-      job.company.toLowerCase().includes(search) ||
-      job.jobRole.toLowerCase().includes(search)
-    );
-  });
-
-  if (!allJobs.length) {
-    return <h3>loading...</h3>;
-  }
-
   return (
-    <div className="overflow-auto w-80">
-      <div className="mb-4">
+    <div className="search-bar container">
+      <form className="search-box" onSubmit={(e) => e.preventDefault()}>
         <input
           type="text"
-          placeholder="Search."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="border p-1 rounded-lg w-full"
+          placeholder="Search..."
+          value={searchQuery}
+          onChange={(e) => handleSearch(e.target.value)}
         />
-      </div>
+      </form>{" "}
     </div>
   );
 }
-
 export default SearchBar;

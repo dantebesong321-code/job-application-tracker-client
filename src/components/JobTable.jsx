@@ -45,18 +45,12 @@ function JobTable() {
       <br />
       <h1>Welcome</h1>
       <Banner>
-        <div className="flex w-[calc(100%-2rem)] flex-col justify-between rounded-lg border border-gray-100 bg-white p-4 shadow-sm md:flex-row lg:max-w-7xl dark:border-gray-600 dark:bg-gray-700">
+        <div className="flex w-[calc(100%-2rem)] flex-col justify-between rounded-lg border border-gray-100 bg-white p-4 shadow-sm md:flex-row xl:max-w-9xl dark:border-gray-600 dark:bg-gray-700">
           <div className="mb-3 mr-4 flex flex-col items-start md:mb-0 md:flex-row md:items-center">
             <p className="flex items-center text-sm font-normal text-gray-500 dark:text-gray-400"></p>
           </div>
           <div className="flex shrink-0 items-center">
-            <Button href="#">Sign up</Button>
-            <BannerCollapseButton
-              color="gray"
-              className="border-0 bg-transparent text-gray-500 dark:text-gray-400"
-            >
-              <HiX className="h-4 w-4" />
-            </BannerCollapseButton>
+            <Button href="/dashboard/job">Add job</Button>
           </div>
         </div>
       </Banner>
@@ -65,7 +59,7 @@ function JobTable() {
         {allJobs.map((job) => (
           <div
             key={job._id}
-            className="flex align-middle justify-between flex-wrap m-1 bg-white rounded-md border border-gray-200 p-3 dark:bg-gray-50 hover:shadow-md text-neutral-700"
+            className="flex align-middle justify-between w-full flex-wrap m-1 bg-white rounded-md border border-gray-200 p-3 dark:bg-gray-50 hover:shadow-md text-neutral-700"
           >
             <div className="flex-col text-left gap-b-0.5">
               <h5 className="font-bold">{job.jobRole}</h5>

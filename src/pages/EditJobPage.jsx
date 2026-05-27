@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import service from "../services/index.services";
-import { Badge } from "flowbite-react";
+// import { Badge } from "flowbite-react";
 
 function EditJobPage() {
   const navigate = useNavigate();
@@ -77,7 +77,7 @@ function EditJobPage() {
 
   return (
     <div className=" flex justify-center xl:text-sm m-5 min-h-svh">
-      <div className="flex flex-col items-center justify-center lg:m-h-150 xl:m-h-160 w-100 bg-gray-50 rounded-2xl text-left gap-3">
+      <div className="flex flex-col items-center justify-center lg:h-170 xl:h-150 w-100 bg-gray-50 rounded-2xl text-left gap-3">
         <h2>Edit Job</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-element">
@@ -156,9 +156,8 @@ function EditJobPage() {
               value={status}
               onChange={(e) => setStatus(e.target.value)}
             >
-              <Badge color="info">
-                <option value="applied">Applied</option>
-              </Badge>
+              {/* <Badge color="info">{} </Badge> */}
+              <option value="applied">Applied</option>
 
               <option value="offered">Offered</option>
 

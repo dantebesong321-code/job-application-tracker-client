@@ -20,7 +20,6 @@ function Signup() {
   const handleSignup = async (e) => {
     e.preventDefault();
 
-    // ... contact backend to register the user
     const body = {
       email: email,
       username: username,

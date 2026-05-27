@@ -41,17 +41,25 @@ function JobTable() {
         {" "}
         <SearchBar />
       </div>
-
       <br />
-      <h1>Welcome</h1>
+      <div className="flex items-center justify-center bg-stone-200 h-50 rounded-2xl ">
+        <h1>Welcome</h1>
+      </div>{" "}
+      <br />
       <Banner>
-        <div className="flex w-[calc(100%-2rem)] flex-col justify-between rounded-lg border border-gray-100 bg-white p-4 shadow-sm md:flex-row xl:max-w-9xl dark:border-gray-600 dark:bg-gray-700">
+        <div className="flex  flex-col justify-between rounded-lg border border-gray-100 bg-white p-4 shadow-sm md:flex-row xl:max-w-9xl dark:border-gray-600 dark:bg-gray-700">
           <div className="mb-3 mr-4 flex flex-col items-start md:mb-0 md:flex-row md:items-center">
-            <p className="flex items-center text-sm font-normal text-gray-500 dark:text-gray-400"></p>
+            <p className="flex items-center text-sm font-normal text-gray-500 dark:text-gray-400">
+              Any new jobs found? Have a go!
+            </p>
           </div>
-          <div className="flex shrink-0 items-center">
-            <Button href="/dashboard/job">Add job</Button>
-          </div>
+
+          <Link to={"/dashboard/job"}>
+            {" "}
+            <button className=" lg:text-xs bg-violet-500 hover:bg-violet-600 w-full  text-white p-2 rounded-md font-semibold transition">
+              Add job
+            </button>
+          </Link>
         </div>
       </Banner>
       <br />

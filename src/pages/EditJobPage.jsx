@@ -73,11 +73,10 @@ function EditJobPage() {
       console.log(error);
     }
   };
-  //  lg:rounded-tr-none lg:rounded-br-none
 
   return (
-    <div className=" flex justify-center xl:text-sm m-5 min-h-svh">
-      <div className="flex flex-col items-center justify-center lg:h-170 xl:h-150 w-100 bg-gray-50 rounded-2xl text-left gap-3">
+    <div className="flex justify-center xl:text-sm m-5 min-h-svh">
+      <div>
         <h2>Edit Job</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-element">
@@ -156,7 +155,6 @@ function EditJobPage() {
               value={status}
               onChange={(e) => setStatus(e.target.value)}
             >
-              {/* <Badge color="info">{} </Badge> */}
               <option value="applied">Applied</option>
 
               <option value="offered">Offered</option>

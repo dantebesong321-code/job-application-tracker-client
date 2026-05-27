@@ -15,6 +15,7 @@ import EditJobPage from "./pages/EditJobPage";
 import DocFooter from "./components/DocFooter";
 import NotFoundPage from "./pages/NotFoundPage";
 import JobTable from "./components/JobTable";
+import JobDetail from "./pages/JobDetail";
 
 // components
 import Navbar from "./components/Navbar";
@@ -39,6 +40,7 @@ function App() {
           <Route index element={<JobList />} />
           <Route path="job/jobTable" element={<JobTable />} />
           <Route path="job/jobList" element={<JobList />} />
+          <Route path="job/jobDetail" element={<JobDetail />} />
           <Route path="job" element={<AddJobPage />} />
           <Route path="job/:jobId" element={<EditJobPage />} />
         </Route>

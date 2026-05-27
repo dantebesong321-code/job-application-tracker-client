@@ -75,6 +75,11 @@ h2 {
   font-family: var(--heading);
   font-weight: 500;
   color: var(--text-h);
+  @media (max-width: 1024px) {
+    font-size: 40px;
+    margin: 20px 0;
+    line-height: 40px;
+  }
 }
 
 h1 {
@@ -82,7 +87,7 @@ h1 {
   letter-spacing: -1.68px;
   margin: 32px 0;
   @media (max-width: 1024px) {
-    font-size: 36px;
+    font-size: 40px;
     margin: 20px 0;
   }
 }
@@ -125,6 +130,7 @@ p {
 }
 .page-area {
   height: auto;
+  margin-top: 32px;
   padding-bottom: 32px;
 }
 .not-found-page {

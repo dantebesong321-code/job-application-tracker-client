@@ -10,7 +10,6 @@ function ProfilePage() {
 
   const getData = async () => {
     try {
-      // call a private route here...
       const response = await service.get("/:userProfileId");
       console.log(response.data);
       setData(response.data);
@@ -19,7 +18,6 @@ function ProfilePage() {
     }
   };
 
-  // loading handler here
   if (!dataOnlyForLoggedUsers) {
     return (
       <span className="bg-indigo-500">
@@ -39,8 +37,6 @@ function ProfilePage() {
         Should only be visible for logged in users that already validated their
         credentials (login) and have a valid token
       </p>
-
-      {dataOnlyForLoggedUsers.username}
     </div>
   );
 }

@@ -44,13 +44,14 @@ function App() {
             }
           >
             <Route index element={<JobList />} />
-            <Route path="job/jobTable" element={<JobTable />} />
-            <Route path="job/jobList" element={<JobList />} />
-            <Route path="job/jobDetail/:jobId" element={<JobDetail />} />
-            <Route path="user/profilePage" element={<ProfilePage />} />
+            <Route path={"job/jobTable"} element={<JobTable />} />
+            <Route path={"job/jobList"} element={<JobList />} />
+            <Route path={"job/jobDetail/:jobId"} element={<JobDetail />} />
+            <Route path={"user/profilePage"} element={<ProfilePage />} />
             <Route path="job" element={<AddJobPage />} />
-            <Route path="job/:jobId" element={<EditJobPage />} />
+            <Route path={"job/:jobId"} element={<EditJobPage />} />
           </Route>
+          <Route path={"*"} element={<NotFoundPage />} />
         </Routes>
       </div>
 

@@ -1,10 +1,10 @@
 import { Chart } from "chart.js";
-import ActivityTab from "./ActivityTab";
+import ActivityChart from "./ActivityChart";
 
 function Card() {
   return (
     <div lassName="bg-stone-200 h-m-xl w-50 h-50 rounded-2xl">
-      <Chart />
+      <ActivityChart />
     </div>
   );
 }

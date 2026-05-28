@@ -4,10 +4,11 @@ import service from "../services/index.services";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "flowbite-react";
-import Chart from "./Chart";
-import { Spinner } from "flowbite-react";
 
-import ActivityTab from "./ActivityTab";
+import Card from "./card";
+import { Spinner } from "flowbite-react";
+import ActivityCard from "./ActivityCard";
+import ActivityChart from "./ActivityChart";
 import {
   Dropdown,
   DropdownDivider,
@@ -22,6 +23,7 @@ function JobTable() {
   const [allJobs, setAllJobs] = useState(null);
   const [filteredJobs, setFilteredJobs] = useState([]);
   const [status, setStatus] = useState("");
+  const [welcomeUser, setWelcomeUser] = useState(null);
 
   useEffect(() => {
     getData();
@@ -36,6 +38,25 @@ function JobTable() {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const getUser = async () => {
+    try {
+      const response = await service.get("/auth/verify");
+      console.log(response.data);
+      setWelcomeUser(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const greetUser = () => {
+    const hour = new Date().getHours();
+
+    if (hour < 12) return "Good morning";
+    if (hour < 18) return "Good afternoon";
+
+    return "Good evening";
   };
 
   if (!allJobs) {
@@ -71,7 +92,17 @@ function JobTable() {
         <SearchBar allJobs={allJobs} setFilteredJobs={setFilteredJobs} />
       </div>
       <br />
-      <h1>Welcome</h1>
+      <div className="mb-6">
+        <h1 className="text-3xl font-bold text-gray-800">
+          {greetUser()}
+          {welcomeUser?.username.firstName &&
+            `, ${welcomeUser.username.firstName}`}
+        </h1>
+
+        <p className="text-gray-500 mt-1">
+          Track your applications and stay organized.
+        </p>
+      </div>
       <br />
       <div>
         <div className="flex  flex-col justify-between rounded-lg border border-gray-100 bg-white p-4 shadow-sm md:flex-row xl:max-w-9xl dark:border-gray-600 dark:bg-gray-700">
@@ -89,19 +120,22 @@ function JobTable() {
           </Link>
         </div>
       </div>{" "}
-      {/* grid layout below  */}
-      <br />
-      <div className="flex justify-center flex-wrap gap-3 ">
-        <div className="flex items-center w-sm text-left p-5 justify-center bg-stone-200 h-20 rounded-2xl ">
-          Content here
-        </div>
-        <div className="flex items-center text-left p-5 justify-center bg-stone-200 h-20 w-30 rounded-2xl "></div>
-      </div>
-      <br /> <br /> <br />
-      {/* {Rendering jobs *} */}
       <div>
+        {" "}
+        <br />
         <h3 className="mb-5">Your activity overview</h3>
         <div>
+          {/* grid layout below  */}
+          <div className=" bg-neutral-50 p-5 rounded-2xl overflow-hidden gap-4">
+            <div className="flex justify-around">
+              <ActivityChart />
+            </div>{" "}
+            <br />
+            <div>
+              <ActivityCard />
+            </div>
+          </div>
+          <br /> <br />
           {filteredJobs.map((job) => (
             <Link to={`/dashboard/job/jobDetail/${job._id}`}>
               <div

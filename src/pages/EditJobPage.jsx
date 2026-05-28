@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import service from "../services/index.services";
-import ActivityTab from "../components/ActivityTab";
 import BackButton from "../components/BackButton";
 
 function EditJobPage() {

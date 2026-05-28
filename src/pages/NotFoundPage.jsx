@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import BackButton from "../components/BackButton";
 
 function NotFoundPage() {
   return (
@@ -6,10 +7,10 @@ function NotFoundPage() {
       {" "}
       <br />
       <h2>Oops, nothing here!</h2>
-      <h5></h5>
       <Link to={"/login"}>
         <h4>Return to login</h4>
       </Link>
+      <BackButton />
     </div>
   );
 }

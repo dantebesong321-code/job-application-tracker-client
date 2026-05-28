@@ -1,9 +1,11 @@
+import { BiEdit } from "react-icons/bi";
 import { BiEditAlt } from "react-icons/bi";
 import service from "../services/index.services";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "flowbite-react";
 import Chart from "./Chart";
+import { Spinner } from "flowbite-react";
 
 import ActivityTab from "./ActivityTab";
 import {
@@ -19,6 +21,7 @@ import SearchBar from "./SearchBar";
 function JobTable() {
   const [allJobs, setAllJobs] = useState(null);
   const [filteredJobs, setFilteredJobs] = useState([]);
+  const [status, setStatus] = useState("");
 
   useEffect(() => {
     getData();
@@ -36,8 +39,7 @@ function JobTable() {
   };
 
   if (!allJobs) {
-    return <h3>loading...</h3>;
-    <Spinner />;
+    return <Spinner size="xl" aria-label="Loading..." className="me-3" light />;
   }
 
   const getStatusColor = (status) => {
@@ -52,7 +54,7 @@ function JobTable() {
         return "bg-green-100 text-green-700";
 
       case "accepted":
-        return "bg-green-100 text-green-700";
+        return "bg-purple-100 text-purple-700";
 
       case "rejected":
         return "bg-red-100 text-red-700";
@@ -127,6 +129,12 @@ function JobTable() {
                     {job.status}
                   </p>{" "}
                   <br />
+                  <Link to={`/dashboard/job/${job._id}`}>
+                    <button className="flex justify-center items-center gap-0.5 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-md text-xs font-medium w-20">
+                      <BiEdit />
+                      Edit
+                    </button>
+                  </Link>
                 </div>
               </div>
             </Link>

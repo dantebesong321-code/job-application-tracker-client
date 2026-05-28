@@ -28,31 +28,31 @@ function App() {
       {/* <MyNavbar /> */}
       <Navbar />
 
-      <br />
-
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/profilePage" element={<ProfilePage />} />
-        //* all pages included in privateOnly
-        <Route
-          path="/dashboard"
-          element={
-            <PrivateOnly>
-              {" "}
-              <Dashboard />
-            </PrivateOnly>
-          }
-        >
-          <Route index element={<JobList />} />
-          <Route path="job/jobTable" element={<JobTable />} />
-          <Route path="job/jobList" element={<JobList />} />
-          <Route path="job/jobDetail/:jobId" element={<JobDetail />} />
-          <Route path="job" element={<AddJobPage />} />
-          <Route path="job/:jobId" element={<EditJobPage />} />
-        </Route>
-      </Routes>
+      <div className="min-h-svh">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          //* all pages included in privateOnly
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateOnly>
+                {" "}
+                <Dashboard />
+              </PrivateOnly>
+            }
+          >
+            <Route index element={<JobList />} />
+            <Route path="job/jobTable" element={<JobTable />} />
+            <Route path="job/jobList" element={<JobList />} />
+            <Route path="job/jobDetail/:jobId" element={<JobDetail />} />
+            <Route path="user/profilePage" element={<ProfilePage />} />
+            <Route path="job" element={<AddJobPage />} />
+            <Route path="job/:jobId" element={<EditJobPage />} />
+          </Route>
+        </Routes>
+      </div>
 
       <DocFooter />
     </>

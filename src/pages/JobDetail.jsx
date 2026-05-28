@@ -1,6 +1,9 @@
+import { BiEdit } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import service from "../services/index.services";
+import { Button, Spinner } from "flowbite-react";
+import BackButton from "../components/BackButton";
 
 function JobDetail() {
   const { jobId } = useParams();
@@ -44,10 +47,10 @@ function JobDetail() {
         return "bg-yellow-100 text-yellow-700";
 
       case "offered":
-        return "bg-purple-100 text-purple-700";
+        return "bg-green-100 text-green-700";
 
       case "accepted":
-        return "bg-green-100 text-green-700";
+        return "bg-purple-100 text-purple-700";
 
       case "rejected":
         return "bg-red-100 text-red-700";
@@ -58,29 +61,47 @@ function JobDetail() {
   };
 
   if (!job) {
-    // single job activities TBD
-    return <h2>Loading...</h2>;
+    return <Spinner size="xl" aria-label="Loading..." className="me-3" light />;
   }
 
   return (
-    <div className="min-h-screen p-5 bg-gray-100">
-      <div className="flex justify-between items-start flex-wrap gap-4">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-800">{job.jobRole}</h1>
+    <div className=" p-5 min-h-svh">
+      <div className="mt-5 flex justify-between flex-wrap">
+        <BackButton />
+        <Link to={`/dashboard/job/${job._id}`}>
+          <button className="flex justify-center items-center gap-0.5 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-md text-xs font-medium w-20">
+            <BiEdit />
+            Edit
+          </button>
+        </Link>
+      </div>{" "}
+      <br />
+      <div className="flex bg-white rounded-2xl p-6 items-start justify-between flex-wrap gap-4">
+        <div className="text-left">
+          <h2 className="text-3xl font-bold text-gray-800">{job.jobRole}</h2>
 
-          <p className="text-lg text-gray-600 mt-1">{job.company}</p>
+          <p className="text-lg font-bold text-gray-600 mt-1">{job.company}</p>
 
           <div className="flex gap-4 mt-4 text-sm text-gray-500">
-            <p>{job.location}</p>
-
-            <p>{job.salary}</p>
+            <p>Location: {job.location}</p>
+            <p> Salary: {job.salary} $</p>
+          </div>
+          <div className="flex gap-4 mt-1 text-sm text-gray-500">
+            <p>Contract type: {job.contractType}</p>
+          </div>
+          <br />
+          <div className="flex items-center gap-0.5 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-xl text-xs font-medium w-35">
+            <p>Created by: {job.createdBy.username}</p>
+          </div>
+          <div className="flex gap-4 mt-4 text-sm text-gray-500">
+            <p>Date: {job.dateCreated}</p>
           </div>
 
           <a
             href={job.website}
             target="_blank"
             rel="noreferrer"
-            className="text-blue-500 text-sm mt-3 inline-block"
+            className="text-blue-500 text-xs mt-3 inline-block"
           >
             Visit Website
           </a>
@@ -95,9 +116,9 @@ function JobDetail() {
             {job.status}
           </p>
         </div>
-      </div>
-
-      <div className="bg-white rounded-2xl shadow-md p-6">
+      </div>{" "}
+      <br />
+      <div className="bg-white rounded-2xl  p-6">
         <h2 className="text-2xl font-bold mb-5">Activity Timeline</h2>
 
         {activities.length === 0 ? (
@@ -130,13 +151,6 @@ function JobDetail() {
             ))}
           </div>
         )}
-      </div>
-      <div className="mt-5 flex gap-3">
-        <Link to={`/dashboard/job/${job._id}`}>
-          <button className="bg-violet-500 hover:bg-violet-600 text-white px-4 py-2 rounded-lg">
-            Edit Job
-          </button>
-        </Link>
       </div>
     </div>
   );

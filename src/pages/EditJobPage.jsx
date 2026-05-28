@@ -9,6 +9,7 @@ function EditJobPage() {
 
   const [jobRole, setJobRole] = useState("");
   const [company, setCompany] = useState("");
+  const [contractType, setContractType] = useState("");
   const [location, setLocation] = useState("");
   const [salary, setSalary] = useState("");
   const [website, setWebsite] = useState("");
@@ -16,7 +17,6 @@ function EditJobPage() {
   const [note, setNote] = useState("");
   const [status, setStatus] = useState("");
   const [favorite, setFavorite] = useState(false);
-
   const [showConfirm, setShowConfirm] = useState(false);
 
   useEffect(() => {
@@ -31,6 +31,7 @@ function EditJobPage() {
 
       setJobRole(response.data.jobRole);
       setCompany(response.data.company);
+      setContractType(response.data.contractType);
       setLocation(response.data.location);
       setSalary(response.data.salary);
       setWebsite(response.data.website);
@@ -49,6 +50,7 @@ function EditJobPage() {
     const body = {
       jobRole,
       company,
+      contractType,
       location,
       salary,
       website,
@@ -155,6 +157,20 @@ function EditJobPage() {
               <option value="virtual">Virtual</option>
 
               <option value="in-person">In Person</option>
+            </select>{" "}
+          </div>{" "}
+          <div className="flex gap-1  form-element">
+            <label>Contract Type</label>
+            <select
+              className="border border-stone-400 mb-4 rounded-xs"
+              value={interviewType}
+              onChange={(e) => setContractType(e.target.value)}
+            >
+              <option value="">Select</option>
+
+              <option value="Permanent contract">Permanent</option>
+
+              <option value="Temporal contract">Temporal</option>
             </select>{" "}
           </div>{" "}
           <div className="form-element">

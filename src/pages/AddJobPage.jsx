@@ -48,11 +48,11 @@ function AddJobPage() {
   return (
     <div>
       <BackButton />
-      <div className="flex justify-center xl:text-sm m-5 min-h-svh">
+      <h3 className="mb-5">Add Job</h3>
+      <div className="flex justify-center text-md xl:text-sm m-5 min-h-svh">
         <div className="flex flex-col items-center justify-center lg:h-160 xl:h-150 w-100 bg-gray-50 rounded-2xl text-left gap-3">
           <div>
             <br />
-            <h2>Add Job</h2>
           </div>{" "}
           <form onSubmit={handleSubmit}>
             <div className="form-element">

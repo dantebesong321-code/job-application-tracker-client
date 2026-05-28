@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import service from "../services/index.services";
 import ActivityTab from "../components/ActivityTab";
+import BackButton from "../components/BackButton";
 
 function EditJobPage() {
   const navigate = useNavigate();
@@ -85,11 +86,13 @@ function EditJobPage() {
   };
 
   return (
-    <div className="flex justify-center xl:text-sm m-5 min-h-svh">
-      <div className="flex flex-col items-center justify-center lg:h-160 xl:h-150 w-100 bg-gray-50 rounded-2xl text-left gap-3">
-        <h2>Edit Job</h2>
-
-        <form onSubmit={handleSubmit}>
+    <div className="xl:text-sm m-5 min-h-svh">
+      <div className="mb-5 flex flex-wrap">
+        <BackButton />
+      </div>{" "}
+      <h3 className="mb-5">Edit job entry</h3>
+      <div className="flex mt-5 flex-col text-md items-center justify-center lg:h-160 xl:h-150 bg-gray-50 rounded-2xl text-left gap-3">
+        <form className="p-10 mt-5" onSubmit={handleSubmit}>
           <div className="form-element">
             <label className="font-medium text-gray-600 mt-2">Job Role</label>
 
@@ -230,7 +233,6 @@ function EditJobPage() {
             </button>
           </div>
         </form>
-
         {showConfirm && (
           <div className="modal-overlay">
             <div className="modal-box">

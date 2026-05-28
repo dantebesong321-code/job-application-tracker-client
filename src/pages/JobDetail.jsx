@@ -96,15 +96,9 @@ function JobDetail() {
           <div className="flex gap-4 mt-4 text-sm text-gray-500">
             <p>Date: {job.dateCreated}</p>
           </div>
-
-          <a
-            href={job.website}
-            target="_blank"
-            rel="noreferrer"
-            className="text-blue-500 text-xs mt-3 inline-block"
-          >
-            Visit Website
-          </a>
+          <div className="flex gap-4 mt-4 text-sm text-gray-500">
+            <p>Job website: {job.website}</p>
+          </div>
         </div>
 
         <div>

@@ -100,6 +100,7 @@ function JobTable() {
       <br /> <br /> <br />
       {/* {Rendering jobs *} */}
       <div>
+        <h3 className="mb-5">Your activity overview</h3>
         <div>
           {filteredJobs.map((job) => (
             <Link to={`/dashboard/job/jobDetail/${job._id}`}>

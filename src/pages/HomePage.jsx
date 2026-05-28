@@ -14,7 +14,7 @@ function Home() {
               spreadsheet chaos.
             </p>{" "}
             <div className="flex flex-col p-4 md:flex-row xl:max-w-9xl">
-              <Link to={"/dashboard"}>
+              <Link to={"/signup"}>
                 <button className="xl:min-w-3xs lg:text-xs bg-violet-500 hover:bg-violet-600 w-full text-white p-2 rounded-md font-semibold transition">
                   Get started
                 </button>
@@ -31,7 +31,7 @@ function Home() {
           </div>
         </div>
         <br />
-        <div className="h-20 "></div>
+
         <div className="flex justify-center flex-wrap gap-3 ">
           <div className="flex items-center w-sm text-left p-5 justify-center bg-stone-200 h-50 rounded-2xl ">
             Content here

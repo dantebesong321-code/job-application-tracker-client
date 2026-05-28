@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import service from "../services/index.services";
-// import { Badge } from "flowbite-react";
+import ActivityTab from "../components/ActivityTab";
 
 function EditJobPage() {
   const navigate = useNavigate();
@@ -13,6 +13,7 @@ function EditJobPage() {
   const [salary, setSalary] = useState("");
   const [website, setWebsite] = useState("");
   const [interviewType, setInterviewType] = useState("");
+  const [note, setNote] = useState("");
   const [status, setStatus] = useState("");
   const [favorite, setFavorite] = useState(false);
 
@@ -34,6 +35,7 @@ function EditJobPage() {
       setSalary(response.data.salary);
       setWebsite(response.data.website);
       setInterviewType(response.data.interviewType);
+      setNote(response.data.note);
       setStatus(response.data.status);
       setFavorite(response.data.favorite);
     } catch (error) {
@@ -51,12 +53,18 @@ function EditJobPage() {
       salary,
       website,
       interviewType,
+      note,
       status,
       favorite,
     };
 
     try {
       await service.patch(`/job/${jobId}`, body);
+      await service.post("/activity", {
+        status: status,
+        favorite: favorite,
+        jobId: jobId,
+      });
 
       navigate("/dashboard");
     } catch (error) {
@@ -78,6 +86,7 @@ function EditJobPage() {
     <div className="flex justify-center xl:text-sm m-5 min-h-svh">
       <div className="flex flex-col items-center justify-center lg:h-160 xl:h-150 w-100 bg-gray-50 rounded-2xl text-left gap-3">
         <h2>Edit Job</h2>
+
         <form onSubmit={handleSubmit}>
           <div className="form-element">
             <label className="font-medium text-gray-600 mt-2">Job Role</label>
@@ -148,6 +157,17 @@ function EditJobPage() {
               <option value="in-person">In Person</option>
             </select>{" "}
           </div>{" "}
+          <div className="form-element">
+            <label className="font-medium text-gray-600 mt-2">note</label>
+
+            <input
+              className="w-full px-2 py-1 border border-stone-400 focus:outline-none focus:bg-gray-100 focus:ring-1 focus:ring-blue-500 rounded-md mb-4"
+              type="text"
+              placeholder="Write something (optional)"
+              value={note}
+              onChange={(e) => setNote(e.target.value)}
+            />
+          </div>
           <div className="flex gap-1 mb-1 form-element">
             <label>Status</label>
             <select

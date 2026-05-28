@@ -36,11 +36,19 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/profilePage" element={<ProfilePage />} />
         //* all pages included in privateOnly
-        <Route path="/dashboard" element={<Dashboard />}>
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateOnly>
+              {" "}
+              <Dashboard />
+            </PrivateOnly>
+          }
+        >
           <Route index element={<JobList />} />
           <Route path="job/jobTable" element={<JobTable />} />
           <Route path="job/jobList" element={<JobList />} />
-          <Route path="job/jobDetail" element={<JobDetail />} />
+          <Route path="job/jobDetail/:jobId" element={<JobDetail />} />
           <Route path="job" element={<AddJobPage />} />
           <Route path="job/:jobId" element={<EditJobPage />} />
         </Route>
@@ -49,10 +57,11 @@ function App() {
       <DocFooter />
     </>
   );
-  <PrivateOnly>
-    {" "}
-    <PrivatePageExample />{" "}
-  </PrivateOnly>;
+
+  // <PrivateOnly>
+  //   {" "}
+  //   <PrivatePageExample />{" "}
+  // </PrivateOnly>;
   {
     /* error FE routes here... */
   }

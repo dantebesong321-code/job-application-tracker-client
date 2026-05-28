@@ -22,7 +22,7 @@ function SearchBar({ allJobs, setFilteredJobs }) {
           placeholder="Search..."
           value={searchQuery}
           onChange={(e) => handleSearch(e.target.value)}
-        />
+        />{" "}
       </form>{" "}
     </div>
   );

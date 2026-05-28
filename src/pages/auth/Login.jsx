@@ -40,7 +40,7 @@ function Login() {
 
       console.log(response.data);
 
-      navigate("/jobList");
+      navigate("/dashboard");
     } catch (error) {
       console.log(error);
       if (error.response.status === 400) {

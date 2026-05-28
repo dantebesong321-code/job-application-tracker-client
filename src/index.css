@@ -92,12 +92,12 @@ h1 {
   }
 }
 h2 {
-  font-size: 32px;
+  font-size: 30px;
   line-height: 118%;
   letter-spacing: -0.24px;
   margin: 0 0 8px;
   @media (max-width: 1024px) {
-    font-size: 20px;
+    font-size: 18px;
   }
 }
 
@@ -112,6 +112,7 @@ h5 {
 }
 
 p {
+  font-size: 12px;
   margin: 0;
 }
 

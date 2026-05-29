@@ -40,26 +40,7 @@ function MyNavbar() {
         </span>
       </NavbarBrand>
 
-      <div className="flex md:order-2">
-        <Dropdown
-          arrowIcon={false}
-          inline
-          label={<Avatar alt="User settings" rounded />}
-        >
-          <DropdownItem>
-            {!isLoggedIn ? (
-              <div className="flex gap-3 text-sm">
-                <Link to="/signup">Signup</Link>
-                <Link to="/login">Login</Link>
-              </div>
-            ) : (
-              <button onClick={handleLogout}>Logout</button>
-            )}
-          </DropdownItem>
-        </Dropdown>
-
-        <NavbarToggle />
-      </div>
+      <NavbarToggle />
 
       <NavbarCollapse>
         <NavbarLink as={Link} to="/">
@@ -69,10 +50,14 @@ function MyNavbar() {
         <NavbarLink as={Link} to="/dashboard">
           Dashboard
         </NavbarLink>
-
-        <NavbarLink as={Link} to="/login">
-          Login
-        </NavbarLink>
+        {!isLoggedIn ? (
+          <div className="flex gap-3 text-sm">
+            <Link to="/signup">Signup</Link>
+            <Link to="/login">Login</Link>
+          </div>
+        ) : (
+          <button onClick={handleLogout}>Logout</button>
+        )}
       </NavbarCollapse>
     </Navbar>
   );

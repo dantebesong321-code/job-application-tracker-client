@@ -56,7 +56,7 @@ function Home() {
         <div className=" m-10 flex items-center text-left justify-center  bg-stone-200  min-h-60 overflow-hidden rounded-2xl">
           <h1 className="flex gap-8 items-center">
             {" "}
-            <RxBackpack size={200} />
+            <RxBackpack size={100} />
             Let’s make progress today
           </h1>
           <h5>

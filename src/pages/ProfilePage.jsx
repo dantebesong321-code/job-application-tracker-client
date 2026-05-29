@@ -44,20 +44,14 @@ function ProfilePage() {
 
       <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
         <div className="flex flex-col items-center text-center gap-4">
-          <Avatar
-            className="bg-gray-50 "
-            img={user.avatar || ""}
-            rounded
-            size="xl"
-            alt={user.username}
-          />
+          <Avatar className="" img={user.avatar || ""} rounded size="xl" />
 
           <div>
             <h1 className="text-2xl font-bold">
               {user.firstName} {user.lastName}
             </h1>
 
-            <p className="text-gray-500">@{user.username}</p>
+            <h2 className="text-gray-500">@{user.username}</h2>
           </div>
 
           <p className="text-gray-600 max-w-md">

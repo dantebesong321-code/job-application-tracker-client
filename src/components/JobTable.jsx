@@ -154,7 +154,7 @@ function JobTable() {
                   <br />
                   <Link to={`/dashboard/job/${job._id}`}>
                     <button className="flex justify-center items-center gap-0.5 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-md text-xs font-medium w-20">
-                      <BiEdit />
+                      <BiEdit size={16} />
                       Edit
                     </button>
                   </Link>

@@ -84,7 +84,7 @@ function JobDetail() {
 
           <div className="flex gap-4 mt-4 text-sm text-gray-500">
             <p>Location: {job.location}</p>
-            <p> Salary: {job.salary} $</p>
+            <p> Salary: {job.salary} </p>
           </div>
           <div className="flex gap-4 mt-1 text-sm text-gray-500">
             <p>Contract type: {job.contractType}</p>

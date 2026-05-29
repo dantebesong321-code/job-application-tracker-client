@@ -71,7 +71,7 @@ function ActivityChart() {
   }
 
   return (
-    <div className="rounded-lg border-gray-100 p-4 overflow-hidden w-lg">
+    <div className="rounded-lg overflow-hidden w-lg">
       <div className="flex justify-between items-center mb-4">
         <h3 className="font-semibold text-gray-700">Activity Analytics</h3>
 

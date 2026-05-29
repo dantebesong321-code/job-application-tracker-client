@@ -10,7 +10,7 @@ function MySidebar() {
     <div className="sidebar-content">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed top-4 left-4 z-50 hover:bg-neutral-200 bg-neutral-100 text-shadow-neutral-600 p-2 rounded-md"
+        className="fixed top-4 left-4 z-50 hover:bg-mauve-300 text-shadow-neutral-600 p-2 rounded-md"
       >
         {isOpen ? <HiX size={20} /> : <HiMenu size={20} />}
       </button>
@@ -22,26 +22,35 @@ function MySidebar() {
         <div className="mt-16 flex flex-col gap-3 p-4">
           <Link
             to="/dashboard"
-            className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded-md"
+            className="flex items-center gap-3 p-2 hover:bg-mauve-300 rounded-md"
           >
-            <HiHome size={22} />
-            {isOpen && <span>Dashboard</span>}
+            {" "}
+            <div className="flex gap-1 text-zinc-600">
+              {" "}
+              <HiHome size={22} />
+              {isOpen && <span>Dashboard</span>}
+            </div>
           </Link>
 
           <Link
             to="/dashboard/job"
-            className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded-md"
+            className="flex items-center gap-3 p-2 hover:bg-mauve-300 rounded-md"
           >
-            <HiPlusCircle size={22} />
-            {isOpen && <span>Add Job</span>}
+            <div className="flex gap-1 text-zinc-600">
+              <HiPlusCircle size={22} />
+              {isOpen && <span>Add Job</span>}
+            </div>
           </Link>
 
           <Link
             to="/dashboard/user/profilePage"
-            className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded-md"
+            className="flex items-center gap-3 p-2 hover:bg-mauve-300 rounded-md"
           >
-            <HiUser size={22} />
-            {isOpen && <span>Profile</span>}
+            <div className="flex gap-1 text-zinc-600">
+              {" "}
+              <HiUser size={22} />
+              {isOpen && <span>Profile</span>}
+            </div>
           </Link>
         </div>
       </aside>

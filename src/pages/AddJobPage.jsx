@@ -126,14 +126,14 @@ function AddJobPage() {
               <label>Contract Type</label>
               <select
                 className="border border-stone-400 mb-4 rounded-xs"
-                value={interviewType}
+                value={contractType}
                 onChange={(e) => setContractType(e.target.value)}
               >
                 <option value="">Select</option>
 
                 <option value="Permanent contract">Permanent contract</option>
 
-                <option value="Temporal contract">Temporal</option>
+                <option value="Temporal contract">Temporal contract</option>
               </select>{" "}
             </div>{" "}
             <div className="flex gap-1 mb-1 form-element">

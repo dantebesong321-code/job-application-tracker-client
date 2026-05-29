@@ -121,7 +121,7 @@ p {
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto;
-  background-color: #ecebed;
+  background-color: #ededed;
   min-height: 120vh;
   @media (max-width: 840px) {
     display: flex;
@@ -146,7 +146,7 @@ p {
   flex-direction: column;
   padding-top: 24px;
   width: 120px;
-  background: #dfdfdf;
+  background-color: #ededed;
   @media (max-width: 840px) {
     display: none;
   }

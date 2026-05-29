@@ -50,8 +50,8 @@ function Home() {
             <img src={imgLandingPg4} height="180px" width="auto" alt="" />
           </div>
         </div>
-      </div>
-
+      </div>{" "}
+      <br />
       <Link to={"/login"}>
         <div className=" m-10 flex items-center text-left justify-center  bg-stone-200  min-h-60 overflow-hidden rounded-2xl">
           <h1 className="flex gap-8 items-center">

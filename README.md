@@ -1,16 +1,56 @@
-# React + Vite
+# Jobbler
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Jobbler is a full-stack job application tracker that helps users organize their job search, track application progress, manage interview stages, and visualize application activity in one clean dashboard.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- User authentication (signup/login)
+- Create, edit, and delete job applications
+- Track application status:
+  - Applied
+  - Interviewing
+  - Offered
+  - Accepted
+  - Rejected
+- Add notes and interview details
+- Mark favorite opportunities
+- Activity dashboard with charts and analytics
+- Search and filter jobs
+- Responsive modern UI
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Frontend
 
-## Expanding the ESLint configuration
+- React
+- React Router
+- Tailwind CSS
+- Flowbite React
+- React Icons
+- Chart.js
+- Axios
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Backend
+
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT Authentication
+
+## Future Improvements
+
+- Email reminders
+- Resume uploads
+- Calendar integration
+- Dark mode
+- Company insights
+- AI-powered application assistant
+- Drag-and-drop Kanban board
+
+## Links
+
+- Deployed: https://job-application-tracker-app-brown.vercel.app/
+- Github Server: https://github.com/dantebesong321-code/job-application-tracker-server
+- Github Client: https://github.com/dantebesong321-code/job-application-tracker-client
+- Figma Ideation: https://www.figma.com/design/C7yBLqtJZF9EVNh97fIzba/Product-Dev---ideation?node-id=42-592&t=8g3zGErKriom670r-1

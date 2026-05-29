@@ -34,51 +34,45 @@ function MyNavbar() {
 
   return (
     <Navbar fluid rounded>
-      <Link to="/">
-        <NavbarBrand>
-          <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-            Jobble
-          </span>
-        </NavbarBrand>{" "}
-      </Link>
+      <NavbarBrand as={Link} to="/">
+        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+          Jobble
+        </span>
+      </NavbarBrand>
+
       <div className="flex md:order-2">
         <Dropdown
           arrowIcon={false}
           inline
           label={<Avatar alt="User settings" rounded />}
         >
-          <DropdownHeader>
-            <span className="block text-sm">Bonnie Green</span>
-            <span className="block truncate text-sm font-medium">
-              user email
-            </span>
-          </DropdownHeader>
-          <DropdownItem>Dashboard</DropdownItem>
-          <DropdownItem>Settings</DropdownItem>
-          <DropdownItem>Earnings</DropdownItem>
-          <DropdownDivider />
           <DropdownItem>
-            {isLoggedIn && (
-              <>
-                {" "}
-                <div className="flex gap-1">
-                  <Link to="/jobList">JobListPage</Link>
-                  <Link onClick={handleLogout}>Logout</Link>
-                </div>
-              </>
+            {!isLoggedIn ? (
+              <div className="flex gap-3 text-sm">
+                <Link to="/signup">Signup</Link>
+                <Link to="/login">Login</Link>
+              </div>
+            ) : (
+              <button onClick={handleLogout}>Logout</button>
             )}
           </DropdownItem>
         </Dropdown>
+
         <NavbarToggle />
       </div>
+
       <NavbarCollapse>
-        <NavbarLink href="#" active>
+        <NavbarLink as={Link} to="/">
           Home
         </NavbarLink>
-        <NavbarLink href="#">About</NavbarLink>
-        <NavbarLink href="#">Services</NavbarLink>
-        <NavbarLink href="#">Pricing</NavbarLink>
-        <NavbarLink href="#">Contact</NavbarLink>
+
+        <NavbarLink as={Link} to="/dashboard">
+          Dashboard
+        </NavbarLink>
+
+        <NavbarLink as={Link} to="/login">
+          Login
+        </NavbarLink>
       </NavbarCollapse>
     </Navbar>
   );

@@ -5,16 +5,9 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "flowbite-react";
 
-import Card from "./card";
 import { Spinner } from "flowbite-react";
 import ActivityCard from "./ActivityCard";
 import ActivityChart from "./ActivityChart";
-import {
-  Dropdown,
-  DropdownDivider,
-  DropdownHeader,
-  DropdownItem,
-} from "flowbite-react";
 
 import { HiX } from "react-icons/hi";
 import SearchBar from "./SearchBar";
@@ -27,6 +20,7 @@ function JobTable() {
 
   useEffect(() => {
     getData();
+    getUser();
   }, []);
 
   const getData = async () => {
@@ -87,29 +81,12 @@ function JobTable() {
 
   return (
     <>
-      <div className="flex flex-wrap gap-3 justify-center">
+      <div className="flex flex-wrap justify-center">
         {" "}
-        <SearchBar allJobs={allJobs} setFilteredJobs={setFilteredJobs} />
-      </div>
-      <br />
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-800">
-          {greetUser()}
-          {welcomeUser?.username.firstName &&
-            `, ${welcomeUser.username.firstName}`}
-        </h1>
-
-        <p className="text-gray-500 mt-1">
-          Track your applications and stay organized.
-        </p>
-      </div>
-      <br />
-      <div>
-        <div className="flex  flex-col justify-between rounded-lg border border-gray-100 bg-white p-4 shadow-sm md:flex-row xl:max-w-9xl dark:border-gray-600 dark:bg-gray-700">
+        <div className="flex justify-between items-center flex-wrap rounded-lg border-gray-100  p-4 md:flex-row w-full">
           <div className="mb-3 mr-4 flex flex-col items-start md:mb-0 md:flex-row md:items-center">
-            <p className="flex items-center text-sm font-normal text-gray-500 dark:text-gray-400">
-              Any new jobs found? Have a go!
-            </p>
+            {" "}
+            <SearchBar allJobs={allJobs} setFilteredJobs={setFilteredJobs} />
           </div>
 
           <Link to={"/dashboard/job"}>
@@ -119,7 +96,18 @@ function JobTable() {
             </button>
           </Link>
         </div>
-      </div>{" "}
+      </div>
+      <div className="mb-6">
+        <h1 className="text-3xl font-bold text-gray-800">
+          {greetUser()}
+          {welcomeUser?.username && `, ${welcomeUser.username}`}
+        </h1>
+
+        <p className="text-gray-500 text-base">
+          Track your applications and stay organized.
+        </p>
+      </div>
+      <div></div>{" "}
       <div>
         {" "}
         <br />
@@ -135,7 +123,7 @@ function JobTable() {
               <ActivityCard />
             </div>
           </div>
-          <br /> <br />
+          <br />
           {filteredJobs.map((job) => (
             <Link to={`/dashboard/job/jobDetail/${job._id}`}>
               <div

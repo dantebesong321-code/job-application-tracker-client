@@ -9,7 +9,6 @@ import Signup from "./pages/auth/Signup";
 import JobList from "./pages/JobList";
 import Dashboard from "./pages/Dashboard";
 import ProfilePage from "./pages/ProfilePage";
-import PrivatePageExample from "./pages/PrivatePageExample";
 import AddJobPage from "./pages/AddJobPage";
 import EditJobPage from "./pages/EditJobPage";
 import DocFooter from "./components/DocFooter";
@@ -26,7 +25,8 @@ function App() {
   return (
     <>
       {/* <MyNavbar /> */}
-      <Navbar />
+      <MyNavbar />
+      {/* <Navbar /> */}
 
       <div className="min-h-svh">
         <Routes>
@@ -58,14 +58,6 @@ function App() {
       <DocFooter />
     </>
   );
-
-  // <PrivateOnly>
-  //   {" "}
-  //   <PrivatePageExample />{" "}
-  // </PrivateOnly>;
-  {
-    /* error FE routes here... */
-  }
 }
 
 export default App;

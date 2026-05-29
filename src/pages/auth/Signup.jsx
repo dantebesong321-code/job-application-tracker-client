@@ -40,8 +40,8 @@ function Signup() {
   };
 
   return (
-    <section className="flex min-h-screen items-center justify-center  bg-blue-50">
-      <div className="flex rounded-3xl shadow-2xl">
+    <section className="flex min-h-screen items-center justify-center bg-purple-900">
+      <div className="flex rounded-3xl">
         <div
           className="flex flex-col items-center justify-center h-120 w-100 bg-gray-50 rounded-2xl text-left gap-2
       

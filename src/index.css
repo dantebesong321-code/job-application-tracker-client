@@ -103,11 +103,12 @@ h2 {
 
 h5 {
   font-size: 18px;
-  line-height: 118%;
+  line-height: 120%;
   letter-spacing: -0.24px;
   margin: 0 0 8px;
   @media (max-width: 1024px) {
     font-size: 14px;
+    line-height: 24px;
   }
 }
 
@@ -120,7 +121,7 @@ p {
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto;
-  background-color: #efefef;
+  background-color: #ecebed;
   min-height: 120vh;
   @media (max-width: 840px) {
     display: flex;
@@ -145,14 +146,14 @@ p {
   flex-direction: column;
   padding-top: 24px;
   width: 120px;
-  background: #d3d3d3;
+  background: #dfdfdf;
   @media (max-width: 840px) {
     display: none;
   }
 }
 .sibar-tabs {
   display: flex;
-  color: #ffffff;
+  color: #6e6e6e;
   align-items: center;
   gap: 4px;
   padding: 4px;

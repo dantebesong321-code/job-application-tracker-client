@@ -52,8 +52,8 @@ function Login() {
   };
 
   return (
-    <section className="flex min-h-screen shadow-2xl  items-center justify-center  bg-blue-50">
-      <div className="flex rounded-3xl shadow-2xl">
+    <section className="flex min-h-screen shadow-2xl  items-center justify-center bg-purple-900">
+      <div className="flex rounded-3xl">
         <div
           className="flex flex-col items-center justify-center h-120 w-100 bg-gray-50 rounded-2xl text-left gap-2
       
@@ -68,7 +68,7 @@ function Login() {
               Email:
             </label>
             <input
-              className="w-full px-2 py-1 border border-stone-400 focus:outline-none focus:bg-gray-100 focus:ring-1 focus:ring-blue-500 rounded-md mb-2"
+              className="w-full px-2 py-1 border border-stone-400 focus:outline-none focus:bg-gray-100 rounded-md mb-2"
               type="text"
               name="email"
               placeholder="email"
@@ -78,7 +78,7 @@ function Login() {
             <br />
             <label className="font-medium text-gray-600 mt-2">Password:</label>
             <input
-              className="w-full px-2 py-1 border  border-stone-400 focus:outline-none mb-8 focus:bg-gray-100 focus:ring-1 focus:ring-blue-500 rounded-md"
+              className="w-full px-2 py-1 border  border-stone-400 focus:outline-none mb-8 focus:bg-gray-100 rounded-md"
               type="password"
               name="password"
               placeholder="password"

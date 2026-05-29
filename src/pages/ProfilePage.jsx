@@ -1,11 +1,12 @@
 import service from "../services/index.services";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import BackButton from "../components/BackButton";
 import { BiEdit } from "react-icons/bi";
-import { Button, Spinner } from "flowbite-react";
+import { Spinner, Avatar } from "flowbite-react";
 
 function ProfilePage() {
-  const [dataOnlyForLoggedUsers, setData] = useState(null);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     getData();
@@ -13,36 +14,82 @@ function ProfilePage() {
 
   const getData = async () => {
     try {
-      const response = await service.get(`/user/${userId}`);
+      const response = await service.get("/auth/verify");
+
       console.log(response.data);
-      setData(response.data);
+
+      setUser(response.data);
     } catch (error) {
       console.log(error);
     }
   };
 
-  if (!dataOnlyForLoggedUsers) {
+  if (!user) {
     return <Spinner size="xl" aria-label="Loading..." className="me-3" light />;
   }
 
   return (
-    <div className="min-h-svh">
-      <div className="mt-5 flex justify-between flex-wrap">
+    <div className="min-h-svh p-5">
+      {/* top section */}
+      <div className="flex justify-between items-center mb-6">
         <BackButton />
-        <Link to={`/dashboard/job/${job._id}`}>
-          <button className="flex justify-center items-center gap-0.5 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-md text-xs font-medium w-20">
+
+        <Link to="/dashboard/profile/edit">
+          <button className="flex items-center gap-1 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-md text-sm font-medium">
             <BiEdit />
             Edit
           </button>
         </Link>
-      </div>{" "}
-      <div className="flex bg-white rounded-2xl p-6 items-start justify-between flex-wrap gap-4">
-        <h3>Hello</h3>
-        <h3>{}</h3>
-        <p>
-          Should only be visible for logged in users that already validated
-          their credentials (login) and have a valid token
-        </p>
+      </div>
+
+      <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+        <div className="flex flex-col items-center text-center gap-4">
+          <Avatar
+            className="bg-gray-50 "
+            img={user.avatar || ""}
+            rounded
+            size="xl"
+            alt={user.username}
+          />
+
+          <div>
+            <h1 className="text-2xl font-bold">
+              {user.firstName} {user.lastName}
+            </h1>
+
+            <p className="text-gray-500">@{user.username}</p>
+          </div>
+
+          <p className="text-gray-600 max-w-md">
+            {user.bio || "No bio added yet."}
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-4 mt-8">
+          <div className="bg-gray-50 p-4 rounded-xl">
+            <h3 className="font-semibold mb-1">Email</h3>
+            <p className="text-gray-600">{user.email}</p>
+          </div>
+
+          <div className="bg-gray-50 p-4 rounded-xl">
+            <h3 className="font-semibold mb-1">Phone</h3>
+            <p className="text-gray-600">{user.phone || "Not provided"}</p>
+          </div>
+
+          <div className="bg-gray-50 p-4 rounded-xl">
+            <h3 className="font-semibold mb-1">Location</h3>
+            <p className="text-gray-600">
+              {user.address?.city || "No location added"}
+            </p>
+          </div>
+
+          <div className="bg-gray-50 p-4 rounded-xl">
+            <h3 className="font-semibold mb-1">Website</h3>
+            <p className="text-gray-600">
+              {user.socialLinks?.website || "No website"}
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );

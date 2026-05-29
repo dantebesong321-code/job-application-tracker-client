@@ -1,60 +1,52 @@
-import { AiOutlineInfoCircle } from "react-icons/ai";
-import { BsBookmarkDash } from "react-icons/bs";
-import { CgAddR } from "react-icons/cg";
-import { RxDashboard } from "react-icons/rx";
-import { RiHome2Line } from "react-icons/ri";
-import HomePage from "../pages/HomePage";
+import { HiMenu, HiX, HiHome, HiUser, HiPlusCircle } from "react-icons/hi";
+
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  Sidebar,
-  SidebarCollapse,
-  SidebarItem,
-  SidebarItemGroup,
-  SidebarItems,
-} from "flowbite-react";
-import {
-  HiArrowSmRight,
-  HiChartPie,
-  HiInbox,
-  HiShoppingBag,
-  HiTable,
-  HiUser,
-} from "react-icons/hi";
 
 function MySidebar() {
+  const [isOpen, setIsOpen] = useState(true);
+
   return (
-    <div className="sidebar-conten">
-      <Sidebar aria-label="Sidebar with multi-level dropdown example">
-        <SidebarItems>
-          <SidebarItemGroup className="">
-            <SidebarItem href="#" icon={HiChartPie}>
-              Dashboard
-            </SidebarItem>
-            <SidebarCollapse icon={HiShoppingBag} label="E-commerce">
-              <SidebarItem href="#">Products</SidebarItem>
-              <SidebarItem href="#">Sales</SidebarItem>
-              <SidebarItem href="#">Refunds</SidebarItem>
-              <SidebarItem href="#">Shipping</SidebarItem>
-            </SidebarCollapse>
-            <SidebarItem href="#" icon={HiInbox}>
-              Inbox
-            </SidebarItem>
-            <SidebarItem href="#" icon={HiUser}>
-              Users
-            </SidebarItem>
-            <SidebarItem href="#" icon={HiShoppingBag}>
-              Products
-            </SidebarItem>
-            <SidebarItem href="#" icon={HiArrowSmRight}>
-              Sign In
-            </SidebarItem>
-            <SidebarItem href="#" icon={HiTable}>
-              Sign Up
-            </SidebarItem>
-          </SidebarItemGroup>
-        </SidebarItems>
-      </Sidebar>
+    <div className="sidebar-content">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="fixed top-4 left-4 z-50 hover:bg-neutral-200 bg-neutral-100 text-shadow-neutral-600 p-2 rounded-md"
+      >
+        {isOpen ? <HiX size={20} /> : <HiMenu size={20} />}
+      </button>
+
+      <aside
+        className={`fixed top-0 left-0 h-screen bg-neutral-200 border-r shadow-md transition-all duration-300 z-20
+        ${isOpen ? "w-64" : "w-20"}`}
+      >
+        <div className="mt-16 flex flex-col gap-3 p-4">
+          <Link
+            to="/dashboard"
+            className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded-md"
+          >
+            <HiHome size={22} />
+            {isOpen && <span>Dashboard</span>}
+          </Link>
+
+          <Link
+            to="/dashboard/job"
+            className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded-md"
+          >
+            <HiPlusCircle size={22} />
+            {isOpen && <span>Add Job</span>}
+          </Link>
+
+          <Link
+            to="/dashboard/user/profilePage"
+            className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded-md"
+          >
+            <HiUser size={22} />
+            {isOpen && <span>Profile</span>}
+          </Link>
+        </div>
+      </aside>
     </div>
   );
 }
+
 export default MySidebar;

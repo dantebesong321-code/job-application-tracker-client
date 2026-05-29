@@ -2,6 +2,18 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
+import {
+  Avatar,
+  Dropdown,
+  DropdownDivider,
+  DropdownHeader,
+  DropdownItem,
+  // Navbar,
+  NavbarBrand,
+  NavbarCollapse,
+  NavbarLink,
+  NavbarToggle,
+} from "flowbite-react";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -21,7 +33,7 @@ function Navbar() {
   }
 
   return (
-    <nav className="bg-blue-600 text-white p-4 flex justify-between">
+    <nav className="bg-stone-200 text-mist-900 p-4 flex justify-between">
       <div>
         <Link to="/">Jobble</Link>
       </div>
@@ -29,8 +41,15 @@ function Navbar() {
         <div className="md:block hidden">
           {!isLoggedIn && (
             <>
-              <Link to="/signup">Signup</Link>
-              <Link to="/login">Login</Link>
+              <div className="flex gap-1 text-xs">
+                <div>
+                  {" "}
+                  <Link to="/signup">Signup</Link>
+                </div>
+                <div>
+                  <Link to="/login">Login</Link>
+                </div>
+              </div>
             </>
           )}
 
@@ -38,7 +57,6 @@ function Navbar() {
             <>
               {" "}
               <div className="flex gap-1">
-                <Link to="/jobList">JobListPage</Link>
                 <Link onClick={handleLogout}>Logout</Link>
               </div>
             </>

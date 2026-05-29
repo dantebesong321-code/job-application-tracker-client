@@ -1,98 +1,3 @@
-// import React from "react";
-// import { Chart as ChartJS } from "chart.js/auto";
-// import { Bar, Doughnut, Line, Radar } from "react-chartjs-2";
-// import { useEffect, useState } from "react";
-// import { Spinner } from "flowbite-react";
-// import service from "../services/index.services";
-
-// function ActivityChart({ activities = [] }) {
-//   const [activitiesChart, setActivitiesChart] = useState([]);
-//   const [loading, setLoading] = useState(true);
-
-//   useEffect(() => {
-//     getData();
-//   }, []);
-
-//   const getData = async () => {
-//     try {
-//       const response = await service.get("/activity");
-
-//       console.log(response.data);
-
-//       setActivitiesChart(response.data);
-//     } catch (error) {
-//       console.log(error);
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   const appliedCount = activitiesChart.filter(
-//     (activityChart) => activityChart.status === "applied",
-//   ).length;
-
-//   const interviewingCount = activitiesChart.filter(
-//     (activityChart) => activityChart.status === "interviewing",
-//   ).length;
-
-//   const offeredCount = activitiesChart.filter(
-//     (activityChart) => activityChart.status === "offered",
-//   ).length;
-
-//   const acceptedCount = activitiesChart.filter(
-//     (activityChart) => activityChart.status === "accepted",
-//   ).length;
-
-//   const rejectedCount = activitiesChart.filter(
-//     (activityChart) => activityChart.status === "rejected",
-//   ).length;
-
-//   if (loading) {
-//     return <Spinner size="xl" aria-label="Loading..." className="me-3" light />;
-//   }
-
-//   return (
-//     <div>
-//       <div>
-//         <div>
-//           <div className="rounded-lg border border-gray-100 bg-white p-4 shadow-sm md:flex-row dark:border-gray-600  dark:bg-gray-700 overflow-hidden">
-//             <Radar
-//               data={{
-//                 borderColor: "rgb(75, 192, 192)",
-//                 labels: [
-//                   "Applied",
-//                   "Interviewing",
-//                   "Offered",
-//                   "Accepted",
-//                   "Rejected",
-//                 ],
-
-//                 datasets: [
-//                   {
-//                     label: "Applications",
-
-//                     data: [
-//                       appliedCount,
-//                       interviewingCount,
-//                       offeredCount,
-//                       acceptedCount,
-//                       rejectedCount,
-//                     ],
-
-//                     borderWidth: 1,
-//                   },
-//                 ],
-//               }}
-//             />
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default ActivityChart;
-
 import React, { useEffect, useState } from "react";
 import { Bar, Line, Radar } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
@@ -166,7 +71,7 @@ function ActivityChart() {
   }
 
   return (
-    <div className="rounded-lg border border-gray-100 bg-white p-4 shadow-sm overflow-hidden w-lg">
+    <div className="rounded-lg border-gray-100 p-4 overflow-hidden w-lg">
       <div className="flex justify-between items-center mb-4">
         <h3 className="font-semibold text-gray-700">Activity Analytics</h3>
 

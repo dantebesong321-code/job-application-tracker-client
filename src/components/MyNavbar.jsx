@@ -36,7 +36,7 @@ function MyNavbar() {
     <Navbar fluid rounded>
       <NavbarBrand as={Link} to="/">
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-          Jobble
+          JoBBler
         </span>
       </NavbarBrand>
 
